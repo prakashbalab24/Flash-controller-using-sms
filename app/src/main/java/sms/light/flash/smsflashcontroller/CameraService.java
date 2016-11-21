@@ -24,10 +24,19 @@ public class CameraService {
     private Context context;
     private Camera cam;
     Camera.Parameters p;
+    private static CameraService cameraService;
 
-    CameraService(Context context) {
+    public static CameraService CameraInstance(Context context)
+    {
+        if (cameraService==null) {
+            cameraService = new CameraService(context);
+            return cameraService;
+        }
+        return cameraService;
+    }
+    private CameraService(Context context) {
         isTorchOn = false;
-        this.context = context;
+
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -59,9 +68,7 @@ public class CameraService {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
-
-
-                mCameraManager.setTorchMode(mCameraId, true);
+                 mCameraManager.setTorchMode(mCameraId, false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -70,6 +77,10 @@ public class CameraService {
             p.setFlashMode(p.FLASH_MODE_OFF);
             cam.setParameters(p);
             cam.stopPreview();
+            if(!camAvail())
+            {
+                destroyCamera();
+            }
 
         }
 
