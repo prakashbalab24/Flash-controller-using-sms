@@ -5,46 +5,49 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS = 111;
-    private Button turnon,turnoff,start,stop;
-    private BackgroundService backgroundService;
+    private Button start,stop;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==R.id.gitIcon)
+        {
+            Uri uri = Uri.parse("http://www.opensourceandroid.in");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        turnon = (Button) findViewById(R.id.turnon);
-        turnoff = (Button) findViewById(R.id.turnoff);
         start = (Button) findViewById(R.id.start);
         stop = (Button) findViewById(R.id.stop);
         checkPermission();
-        backgroundService = new BackgroundService();
 
 
-
-        turnon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                CameraService.CameraInstance(MainActivity.this).turnOnFlashLight();
-            }
-        });
-
-        turnoff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CameraService.CameraInstance(MainActivity.this).turnOffFlashLight();
-
-            }
-        });
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    // For Android M and above device
     public boolean checkPermission()
     {
         int currentAPIVersion = Build.VERSION.SDK_INT;
@@ -83,12 +87,5 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return true;
         }
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
     }
 }

@@ -8,39 +8,70 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorAccent"
     tools:context="sms.light.flash.smsflashcontroller.MainActivity">
 
-    <Button
-        android:text="ON"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:textColor="@color/textColor"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="73dp"
-        android:id="@+id/turnon" />
+        android:id="@+id/textView4" />
 
-    <Button
-        android:text="OFF"
+    <TextView
+        android:text="@string/smsKeyword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/turnon"
-        android:layout_alignStart="@+id/turnon"
-        android:layout_marginTop="116dp"
-        android:id="@+id/turnoff" />
+        android:textColor="@color/textColor"
+        android:id="@+id/textView6"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:text="Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/start"
+        android:layout_above="@+id/textView6"
         android:layout_alignParentStart="true"
-        android:id="@+id/start" />
+        android:layout_marginBottom="25dp" />
+
+    <TextView
+        android:text="Sms Service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColor"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
 
     <Button
         android:text="Stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/stop"
+        android:layout_alignBaseline="@+id/start"
+        android:layout_alignBottom="@+id/start"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/smsMonitor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColor"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp" />
+
+    <TextView
+        android:text="NOTE: This is an OPEN SOURCE demo App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/stop" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView8" />
+
 </RelativeLayout>

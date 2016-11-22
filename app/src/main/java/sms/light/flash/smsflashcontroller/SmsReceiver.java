@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SmsReceiver extends BroadcastReceiver {
-
+    String messageLowerCase="";
     public SmsReceiver() {
     }
     @Override
@@ -30,15 +30,13 @@ public class SmsReceiver extends BroadcastReceiver {
                 for (int i = 0; i < pdusObj.length; i++) {
                     SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
                     String message = currentMessage.getDisplayMessageBody();
-                    Log.i("Smsmsg",message);
+                    messageLowerCase = message.toLowerCase();
                     try {
-                        if (message.indexOf("flashon")>-1) {
+                        if (messageLowerCase.indexOf("flashon")>-1) {
                             CameraService.CameraInstance(context).turnOnFlashLight();
-
                         }
-                        if (message.indexOf("flashoff")>-1) {
+                        if (messageLowerCase.indexOf("flashoff")>-1) {
                             CameraService.CameraInstance(context).turnOffFlashLight();
-
                         }
                     } catch (Exception e) {
                     }
