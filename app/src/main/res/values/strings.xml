@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Sms Flash Controller</string>
+    <string name="smsMonitor">Sms Servie will monitor all the incoming sms and turn on/off the flash if the message contains the keyword. Stop the service if you dont want to monitor sms.</string>
+    <string name="smsKeyword">Start the sms service and send sms with keyword flashon or flashoff</string>
+</resources>
