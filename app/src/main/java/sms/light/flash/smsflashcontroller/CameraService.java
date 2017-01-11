@@ -91,7 +91,7 @@ public class CameraService {
     }
 
     public void destroyCamera() {
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M){
         cam.release();}
     }
 
